@@ -25,7 +25,7 @@ A passing test says a game behaves; Soroban fees are multi-dimensional, so it do
 not say a call fits a ledger. `GameHarness` can report the budget snapshot the host
 already meters for the last top-level invocation:
 
-```rust
+```rust,ignore
 let report = harness.resource_report();
 println!("{}", report.to_csv());
 ```
@@ -39,7 +39,7 @@ instantiation, Wasm reads, and rent bumps on real entries are not part of it.
 
 To make a scenario a gate, commit its numbers with a tolerance:
 
-```rust
+```rust,ignore
 let budget = ResourceBudget::new(baseline, 10, 0);
 harness.assert_resource_budget("init_match", &budget);
 ```
