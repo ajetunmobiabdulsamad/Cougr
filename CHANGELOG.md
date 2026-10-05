@@ -4,6 +4,7 @@
 
 ### Added
 
+- **`cougr_core::accounts::derive_session_key_id`** - deterministic session-key identifier derivation, so the Rust core and the TypeScript session client agree on session identity instead of re-deriving it off-chain
 - **`cougr_core::cors`** - CORS configuration validation and dynamic origin
   allowlist for HTTP gateways in front of a game contract: `CorsConfig`
   validates origins, methods, header names, and credential/wildcard
@@ -11,6 +12,13 @@
   single-label wildcard subdomain (`https://*.example.com`), and global `*`
   entries with case/default-port-normalized matching; preflight evaluation
   returns ready-to-emit response headers
+- **`cougr_core::test`** - `ResourceReport` and `ResourceBudget` for metering and
+  gating a scenario's Soroban resource cost: `ResourceReport` carries the eight
+  dimensions `Env::cost_estimate().resources()` returns with CSV round-tripping,
+  and `ResourceBudget` compares a report against a committed baseline plus a
+  documented tolerance; `GameHarness::resource_report()` and
+  `GameHarness::assert_resource_budget(scenario, budget)` expose both from the
+  sandbox (`testutils` only)
 - **`cougr-cli`** - new workspace member publishing the `cougr` binary
 - **`cougr new <name> [--template <name>]`** - scaffolds a Soroban game contract crate
   following the canonical `lib.rs` / `components.rs` / `systems.rs` layout, with a
